@@ -114,8 +114,9 @@ flowchart TD
 ## 8. 开跑前的一次性准备（不走流程）
 
 1. 啊bob 配好 Actions（Windows runner），先只挂核心测试。私有仓库的 Windows 分钟数按倍率计费，具体倍率以 GitHub 当前的计费页为准。
-2. 如果账号方案支持，给 main 开分支保护：只能通过 PR 合并，检查必须通过。
+2. 如果账号方案支持，给 main 开分支保护：只能通过 PR 合并，检查必须通过，勾上"包含管理员"。不支持时，由 Human 合并前确认 CI 为绿。
 3. 在仓库里建好 `STATUS.md`、`docs/nodes/`、Issue 模板和 PR 模板。
+4. 给啊bob 的凭据用 fine-grained token 或独立 bot 账号，只授权所需仓库，不用 Human 本人账号登录。
 
 ## 9. 试运行
 
