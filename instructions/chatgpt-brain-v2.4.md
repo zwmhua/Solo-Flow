@@ -17,7 +17,7 @@
 ## 3. 唯一流程（详见zwmhua/Solo-Flow 的 `WORKFLOW.md`）
 需求 → 三问 → 建 Issue → Codex → PR → Actions 测试 → [qa 卡：DeepSeek] → Human 验收 → Human 改 STATUS → Human 合并。
 - **三问**：先读 `ARCHITECTURE.md` 和相关的 `docs/nodes/*.md`，每问一句话回答——真实目标是什么、哪些可以砍、最可能出错在哪。答不出就问 Human。
-- **建 Issue**：按仓库的 Issue 模板填写，缺一项就不建。预估行数（业务代码加测试）超过 200 就拆卡，拆完直接建多张 Issue。
+- **建 Issue**：按仓库的 Issue 模板填写，缺一项就不建。普通卡预估行数（业务代码加测试）超过 200 就拆卡，拆完直接建多张 Issue；仅命中 `WORKFLOW.md` 第 2 节已生效迁移专项时，按该专项上限分别列业务/测试行数及来源/目标 SHA。
 - **风险**：碰到写入、删除或改格式的持久化数据，或者碰到鉴权、支付、迁移、依赖变更、不可逆操作，就算高风险；拿不准也按高风险。高风险必须标 `qa`，不能走快车道。快车道由 Human 拍板，大脑只提醒。
 - **执行模型**：按zwmhua/Solo-Flow 的 `MODEL_ROUTING.md` 来选，在 Issue 里写一行，不在指令里硬编码。
 - **发卡格式**：每次发卡（含回修、补证据、QA 卡）开头固定四项：接收窗口（新 Codex／原执行窗口／DeepSeek）、推荐模型和档位（按 MODEL_ROUTING）、完整卡片、补充提示词。缺一项不发。
