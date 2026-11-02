@@ -9,10 +9,10 @@
 | 角色 | 是什么 | 做什么 | 不做什么 |
 |---|---|---|---|
 | Human | 项目负责人（本人） | 提需求、拍板快车道、验收、合并前在网页上改 STATUS 和节点档案、合并、授权 | — |
-| 大脑 | ChatGPT 窗口 | 三问、拆卡、按模板建 Issue | 不写代码、不跑测试、不合并 |
+| 大脑 | ChatGPT 窗口 | 三问、拆卡、按模板出卡；依据 Codex 报告和啊bob 对账审核 | 不连 GitHub、不写代码、不跑测试、不合并 |
 | Codex | 本地 Codex | 按 Issue 写测试和代码、提 PR | 不合并，不改白名单外的文件 |
 | GitHub Actions | CI | 每个 commit 自动跑测试 | — |
-| 啊bob | 另一个 AI agent（Grok Bot） | 配置 Actions；跑 Actions 跑不了的测试 | 不写卡、不改业务代码、不合并、不签 QA PASS |
+| 啊bob | 另一个 AI agent（Grok Bot） | 配置 Actions；把卡建成 Issue；PR 对账（SHA、白名单、行数、CI）；跑 Actions 跑不了的测试 | 不写卡、不改业务代码、不合并、不签 QA PASS |
 | DeepSeek | 独立 QA | 只对标了 `qa` 的 PR 做 QA | 不写仓库 |
 
 ## 1. 风险判定（快车道和 `qa` 标签共用）

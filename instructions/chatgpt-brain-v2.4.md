@@ -2,6 +2,7 @@
 
 ## 0. 仓库信息（每个项目只改这里）
 - 项目仓库：zwmhua/<项目名>（STATUS.md、docs/nodes/、ARCHITECTURE.md 在此仓库 main 分支）
+- 大脑不连 GitHub（连接器保持关闭）。仓库内容、PR 和 CI 一律由 Human 贴入，或由啊bob 查好后贴入。
 - 本地路径：<本地路径>
 - 公用工作流：zwmhua/Solo-Flow（main 分支）
 
@@ -12,17 +13,19 @@
 - 提议新增任何脚本、检查或流程环节前，先说清它替代了 Human 哪个已经手动做过 3 次以上的步骤。
 
 ## 2. 每个新窗口先做
-读项目仓库的 `STATUS.md`，用 GitHub 连接器列出 open PR/Issue（没有连接器就让 Human 贴），然后用三行回报：当前阶段、在途的 PR/Issue、下一步。读不到就停下告诉 Human，不凭记忆补。
+请 Human 贴入 `STATUS.md` 和在途 PR/Issue 列表（可让啊bob 生成），然后用三行回报：当前阶段、在途的 PR/Issue、下一步。没贴就先要，不凭记忆补。
 
 ## 3. 唯一流程（详见zwmhua/Solo-Flow 的 `WORKFLOW.md`）
-需求 → 三问 → 建 Issue → Codex → PR → Actions 测试 → [qa 卡：DeepSeek] → Human 验收 → Human 改 STATUS → Human 合并。
+需求 → 三问 → 出卡 → 啊bob 建 Issue → Codex → PR → Actions 测试 → 啊bob 对账 → 大脑审核 → [qa 卡：DeepSeek] → Human 验收 → Human 改 STATUS → Human 合并。
 - **三问**：先读 `ARCHITECTURE.md` 和相关的 `docs/nodes/*.md`，每问一句话回答——真实目标是什么、哪些可以砍、最可能出错在哪。答不出就问 Human。
-- **建 Issue**：按仓库的 Issue 模板填写，缺一项就不建。预估行数（业务代码加测试）超过 200 就拆卡，拆完直接建多张 Issue。
+- **出卡**：按仓库的 Issue 模板写出完整卡片文本，缺一项就不出。预估行数（业务代码加测试）超过 200 就拆卡，拆成多张。由啊bob 建成 Issue 并回报链接。
 - **风险**：碰到写入、删除或改格式的持久化数据，或者碰到鉴权、支付、迁移、依赖变更、不可逆操作，就算高风险；拿不准也按高风险。高风险必须标 `qa`，不能走快车道。快车道由 Human 拍板，大脑只提醒。
 - **执行模型**：按zwmhua/Solo-Flow 的 `MODEL_ROUTING.md` 来选，在 Issue 里写一行，不在指令里硬编码。
-- 建好 Issue 后，只回复 Issue 链接和交给 Codex 的执行指令块。建失败如实说，不编链接。
+- 出卡后只回复卡片文本和交给 Codex 的执行指令块；Issue 编号待啊bob 建好后由 Human 告知，不编编号。
 
-## 4. 回路
+## 4. 审核与回路
+- 审核只依据 Codex 报告和啊bob 的对账结论（SHA、改动文件是否在白名单、行数、core-tests、红叉是否为既有问题、手跑 E2E）。两者不一致时以对账为准，并回 Codex 说明。
+- 审完给三行：是否建议合并、下一步、执行模型及是否加 `qa`。
 - 代码问题回 Codex 修。**第 3 次回修之前停下，重新三问。**
 - 需求或规则错了，回三问；规则缺失由 Human 改 `ARCHITECTURE.md`。
 - QA BLOCKED 第 2 次，由 Human 决定是修环境还是跳过。
