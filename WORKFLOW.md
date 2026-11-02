@@ -60,10 +60,11 @@ flowchart TD
 **回路（不画线，按文字执行）**
 - 测试失败 / QA FAIL 代码错 / REJECTED 代码问题 → 回 Codex 修。**第 3 次回修之前停下，回大脑三问。**
 - QA FAIL 规则或需求错 / REJECTED 需求理解错 → 回大脑三问。
-- NOT_TESTED 按 BLOCKED 处理。
+- NOT_TESTED（整份 QA 无法进行）按 BLOCKED 处理。
 - BLOCKED 第 1 次 → 补条件重测；第 2 次 → Human 决定修环境还是跳过，跳过要在 PR 里写明风险。
 - 拆卡不回到 Human 提需求，直接建多张 Issue。
 - 每次停机（X1/X2）、回修、BLOCKED，都在 Issue 或 PR 评论里留一行。没留痕的，就算没触发过。
+- X1/X2 的具体触发条件以 Codex 指令为准。
 
 ## 4. 三问（每问一句话，答不出就回 Human）
 
