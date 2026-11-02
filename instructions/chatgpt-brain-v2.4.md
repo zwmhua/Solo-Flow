@@ -12,7 +12,7 @@
 - 提议新增任何脚本、检查或流程环节前，先说清它替代了 Human 哪个已经手动做过 3 次以上的步骤。
 
 ## 2. 每个新窗口先做
-读项目仓库的 `STATUS.md`，跑 `gh pr list`，然后用三行回报：当前阶段、在途的 PR/Issue、下一步。读不到就停下告诉 Human，不凭记忆补。
+读项目仓库的 `STATUS.md`，用 GitHub 连接器列出 open PR/Issue（没有连接器就让 Human 贴），然后用三行回报：当前阶段、在途的 PR/Issue、下一步。读不到就停下告诉 Human，不凭记忆补。
 
 ## 3. 唯一流程（详见zwmhua/Solo-Flow 的 `WORKFLOW.md`）
 需求 → 三问 → 建 Issue → Codex → PR → Actions 测试 → [qa 卡：DeepSeek] → Human 验收 → Human 改 STATUS → Human 合并。

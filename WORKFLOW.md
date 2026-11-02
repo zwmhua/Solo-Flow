@@ -34,7 +34,7 @@
 
 ```mermaid
 flowchart TD
-    S([新窗口：读 STATUS.md + gh pr list]) --> A[Human 提需求]
+    S([新窗口：读 STATUS.md + 列出 open PR/Issue]) --> A[Human 提需求]
     A --> FAST{Human 拍板：快车道？}
     FAST -->|是：Human 在指令里写白名单| G
     FAST -->|否| B{大脑三问<br>先读 ARCHITECTURE.md 和相关节点档案}
@@ -60,6 +60,7 @@ flowchart TD
 **回路（不画线，按文字执行）**
 - 测试失败 / QA FAIL 代码错 / REJECTED 代码问题 → 回 Codex 修。**第 3 次回修之前停下，回大脑三问。**
 - QA FAIL 规则或需求错 / REJECTED 需求理解错 → 回大脑三问。
+- NOT_TESTED 按 BLOCKED 处理。
 - BLOCKED 第 1 次 → 补条件重测；第 2 次 → Human 决定修环境还是跳过，跳过要在 PR 里写明风险。
 - 拆卡不回到 Human 提需求，直接建多张 Issue。
 - 每次停机（X1/X2）、回修、BLOCKED，都在 Issue 或 PR 评论里留一行。没留痕的，就算没触发过。
@@ -76,7 +77,7 @@ flowchart TD
 | 内容 | 放哪 |
 |---|---|
 | 卡、白名单、行数、要不要 QA | Issue |
-| 在途的卡 | `gh pr list` / 开着的 Issue |
+| 在途的卡 | GitHub 上开着的 PR / Issue |
 | 测试结果 | Actions run（手跑的贴在 PR 评论） |
 | QA 结论、停机和回修记录 | PR / Issue 评论 |
 | 已合并的内容 | git log |
@@ -100,53 +101,22 @@ flowchart TD
 7. **红线不变**：没有 Human 授权，不合并、不部署、不做不可逆操作；不覆盖未知改动、日志和测试证据。
 8. **规则只减不加**：同一个问题漏过两次才加规则。每 10 张卡，按停机、回修、BLOCKED、部分完成的记录，删掉从没触发过的**事件类规则**（回修上限、BLOCKED、部分完成、快车道）。**防护类规则**（红线、WIP 上限、commit 绑定、永久禁区、风险判定）不按触发次数删。
 
-## 7. Issue 模板
+## 7. 模板（只放一处，以文件为准）
 
-```markdown
-目标（一句话）：
-三问改了什么：无 / ...        （和 Human 原始需求比）
-验收点 / 先写的测试：          （第三问"最可能出错"写在这里）
-白名单文件：
-预估行数：                     （业务+测试，超过 200 就拆）
-标签：qa / 无
-```
-
-## 8. PR 模板
-
-```markdown
-关联：closes #N（快车道写：快车道：<一句说明>）
-改动文件：
-测试命令：
-未验证项：
-```
+- Issue 模板：[`templates/.github/ISSUE_TEMPLATE/task.md`](templates/.github/ISSUE_TEMPLATE/task.md)
+- PR 模板：[`templates/.github/pull_request_template.md`](templates/.github/pull_request_template.md)
+- STATUS 模板：[`project-skeleton/STATUS.md`](project-skeleton/STATUS.md)
+- 节点档案模板（有坑才追加）：[`project-skeleton/docs/nodes/_TEMPLATE.md`](project-skeleton/docs/nodes/_TEMPLATE.md)
 - 测试结果看 Actions，手跑的由啊bob 贴在评论里。
 - Human 验收时在评论里填一行 `QA 独有发现：无 / ...`。判断方法：问自己"没有这条发现，我会不会放行？"会放行，就算独有发现。
 
-## 9. STATUS.md 模板
-
-```markdown
-# STATUS
-阶段：
-下一步：
-## 已知风险 / 跳过项
-- 
-```
-
-## 10. 节点档案模板（有坑才追加）
-
-```markdown
-# <节点名>
-## 踩过的坑和决定
-- YYYY-MM-DD  PR #N：<问题> → <怎么处理/决定>
-```
-
-## 11. 开跑前的一次性准备（不走流程）
+## 8. 开跑前的一次性准备（不走流程）
 
 1. 啊bob 配好 Actions（Windows runner），先只挂核心测试。私有仓库的 Windows 分钟数按倍率计费，具体倍率以 GitHub 当前的计费页为准。
 2. 如果账号方案支持，给 main 开分支保护：只能通过 PR 合并，检查必须通过。
 3. 在仓库里建好 `STATUS.md`、`docs/nodes/`、Issue 模板和 PR 模板。
 
-## 12. 试运行
+## 9. 试运行
 
 - 范围：M0 收尾之后的卡。M0 收完之前不改流程。
 - 普通卡跑满 10 张，按规则 8 清理一次；`qa` 卡按规则 6 单独计数；行数上限按第 2 节校准。
