@@ -1,4 +1,4 @@
-# 工作流 v2.4（最终版，冻结）
+# 工作流 v2.5（最终版，冻结）
 
 > 底子：v2.3.5 红线 + HAC 骨架（Issue/PR、停机条件、规则只减不加）。
 > 本文给 AI 窗口读，称呼固定，不用"你/我"。
@@ -60,8 +60,8 @@ flowchart TD
     Q -->|否| V
     Q -->|是| L[DeepSeek 独立 QA<br>写明所测 commit]
     L --> V{Human 验收<br>检查 Files changed}
-    V -->|ACCEPTED| W[Human 在网页上改<br>STATUS / 节点档案，有变化才改]
-    W --> M[Human Squash 合并]
+    V -->|ACCEPTED| W[Human 在最后一个提交更新 STATUS<br>节点档案有变化才改]
+    W -->|满足合并门禁| M[Human Squash 合并]
     M --> S
 
     classDef stop fill:#fdd,stroke:#c00
@@ -106,7 +106,8 @@ flowchart TD
    - 默认证据是 Actions run：命令在 workflow 里，退出码看检查状态，日志看 run 页面，commit 看 run 的 SHA。
    - Actions 跑不了的测试（硬件、本地数据、桌面端 E2E）由啊bob 手跑，并贴出命令、退出码、Human 能打开的原始日志和所测的 commit。
    - 手跑的证据和 QA 结论都要写明所测 commit。和 PR 最新 commit 不一致就作废，重新跑。
-   - 唯一豁免：在 QA 之后，如果新 commit 只改了 `STATUS.md` 和 `docs/nodes/`，DeepSeek QA 不用重做。Human 合并前在 Files changed 里确认确实只改了这两处。
+   - 唯一豁免：在 QA 之后，如果新 commit 只改了 `STATUS.md` 和 `docs/nodes/`，DeepSeek QA 不用重做。Human 合并前在 Files changed 里确认确实只改了这两处。DeepSeek 须在评论中引用原 QA 结论并绑定新 head SHA。
+   - 同一检查需重跑才通过时，必须开 Issue 记录失败 job 链接和失败原因，并在 PR 评论中引用该 Issue。未留痕视同 CI 未通过。
 4. **回修上限**：第 3 次回修之前停下，回大脑三问。
 5. **部分完成**：ACCEPTED 但有没做完的部分，直接新开 Issue，不留口头的"有条件验收"。
 6. **QA 评估**：单独计数。跑满 5 张标了 `qa` 的卡就评估一次，如果独有发现为 0，就砍掉 DeepSeek 这一步。
@@ -116,6 +117,9 @@ flowchart TD
    - Codex：交付时自己把执行报告贴到 PR 评论（含所测 commit）。
    - DeepSeek：QA 完成后自己用 `gh pr comment` 把结论贴到 PR 评论（含所测 commit），评论第一行固定写 `DeepSeek QA：`（它用 Human 账号发评论，靠这行区分）。贴不上时 Human 把原文转给啊bob，由啊bob 原样贴上，不改结论。
    - 大脑出的回修/补证据卡里写明这一条，缺报告评论的 PR 不进验收。
+
+10. **STATUS 随合并**：每张卡合并前的最后一个提交必须更新 `STATUS.md`，写明卡号、PR 和状态「已合并待确认」。未更新不得合并。
+11. **QA 前置门禁**：项目仓库须为标了 `qa` 的 PR 设置合并前必过的 CI 检查。PR 须有一条评论首行严格等于 `DeepSeek QA：`，且同一评论正文包含当前 head SHA。缺少匹配评论时检查失败，不得合并。具体 workflow 实现另开项目卡。
 
 ## 7. 模板（只放一处，以文件为准）
 
