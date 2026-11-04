@@ -1,0 +1,30 @@
+name: Documentation checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  docs:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.11.0
+      - name: Show tested versions
+        run: |
+          node --version
+          git rev-parse HEAD
+          echo "GITHUB_SHA=$GITHUB_SHA"
+      - name: Test document checker
+        run: node --test test/check-docs.test.mjs
+      - name: Check repository documents
+        run: node scripts/check-docs.mjs
