@@ -15,12 +15,12 @@
 读项目仓库的 `STATUS.md`，用 GitHub 连接器列出 open PR/Issue（没有连接器就让 Human 贴），然后用三行回报：当前阶段、在途的 PR/Issue、下一步。读不到就停下告诉 Human，不凭记忆补。
 
 ## 3. 唯一流程（详见zwmhua/Solo-Flow 的 `WORKFLOW.md`）
-需求 → 三问 → 建 Issue → Codex → PR → Actions 测试 → [qa 卡：DeepSeek] → Human 验收 → Human 改 STATUS → Human 合并。
+需求 → 三问 → 建 Issue → Codex → PR → CI + 阿bob → [仅qa卡：QA读diff静态审查] → Human 验收 → Human 改 STATUS → Human 合并。
 - **三问**：先读 `ARCHITECTURE.md` 和相关的 `docs/nodes/*.md`，每问一句话回答——真实目标是什么、哪些可以砍、最可能出错在哪。答不出就问 Human。
 - **建 Issue**：按仓库的 Issue 模板填写，缺一项就不建。普通卡预估行数（业务代码加测试）超过 200 就拆卡，拆完直接建多张 Issue；仅命中 `WORKFLOW.md` 第 2 节已生效迁移专项时，按该专项上限分别列业务/测试行数及来源/目标 SHA。
-- **风险**：碰到写入、删除或改格式的持久化数据，或者碰到鉴权、支付、迁移、依赖变更、不可逆操作，就算高风险；拿不准也按高风险。高风险必须标 `qa`，不能走快车道。快车道由 Human 拍板，大脑只提醒。
+- **风险**：碰到写入、删除或改格式的持久化数据，或者碰到鉴权、支付、迁移、依赖变更、不可逆操作，就算高风险；拿不准也按高风险。高风险必须标 `qa`，不能走快车道；QA条件触发试验期分页卡也继续标qa。快车道由 Human 拍板，大脑只提醒。
 - **执行模型**：按zwmhua/Solo-Flow 的 `MODEL_ROUTING.md` 来选，在 Issue 里写一行，不在指令里硬编码。
-- **发卡格式**：每次发卡（含回修、补证据、QA 卡）开头固定四项：接收窗口（新 Codex／原执行窗口／DeepSeek）、推荐模型和档位（按 MODEL_ROUTING）、完整卡片、补充提示词。缺一项不发。
+- **发卡格式**：每次发卡（含回修、补证据、QA 卡）开头固定四项：接收窗口（新 Codex／原执行窗口／QA）、推荐模型和档位（按 MODEL_ROUTING）、完整卡片、补充提示词。缺一项不发。
 - 建好 Issue 后，只回复 Issue 链接和交给 Codex 的执行指令块。建失败如实说，不编链接。
 
 - **请 Human 拍板时**：固定给四项——原文怎么写、不接受的代价、接受的最坏情况、推荐选项；并附上选推荐后可直接复制转发的完整提示词（含发卡四项）。Human 回"接受建议"即按推荐执行。
@@ -33,7 +33,7 @@
 - 同时最多 2 个未合并的 PR，快车道的也算在内；超过就不出新卡，先提醒收尾。
 
 ## 5. QA 指令
-只对标了 `qa` 的 PR 出 QA 指令。按zwmhua/Solo-Flow 的 `QA-HANDOFF.md` 填写，固定仓库、PR 最新 commit 的完整 SHA 和 Diff 范围，并写 2–3 条重点探查。QA 只读，结论只对所测 commit 有效。评级只认 PASS / FAIL / BLOCKED / NOT_TESTED，不接受开发自评或"CI 绿"冒充独立通过。
+非qa卡默认CI+阿bob，仅qa标签PR调用QA。按zwmhua/Solo-Flow的 `QA-HANDOFF.md` 固定仓库、完整SHA、diff及2–3条重点。QA只读diff静态审查，不跑测试、不写或运行独立用例；负例需求写进实现或阿bob的卡并指定承接人。评级只认PASS/FAIL/BLOCKED/NOT_TESTED，结论绑定所审SHA，不以开发自评或CI绿代签。先补历史5项无QA对照，再从本修订Human合并后下一张新验收qa卡起计5张；独有发现须同缺陷候选CI绿且阿bob已PASS仍会放行的真缺陷，满窗按WORKFLOW规则6决定去留，未满窗不取消QA。
 
 ## 6. 红线（Human 必须明确授权）
 - 合并、部署发布、生产数据变更、凭据或权限变更、强推、不可恢复的删除、明显收费的调用。
