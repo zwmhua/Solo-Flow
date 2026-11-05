@@ -1,6 +1,6 @@
 # 验收固定入口与两轮止损（候选）
 
-PR20已由Human合并；2026-11-05后续指令明确脚本仍为候选，从下一张真实验收卡起试用。Solo-Flow规则修订仍由Human合并，不走自动合并。Workbench双PASS、CI、白名单、安全边界及整卡业务验收不变。
+PR20、PR22已由Human合并；脚本仍为候选，从下一张真实验收卡起试用。本次QA条件触发试验须Human手合后使用：非qa默认同SHA的CI+阿bob，仅qa标签另叫QA读diff静态审查；QA不跑测试、不写或运行独立用例，负例需求写进实现或阿bob的卡由其承接。试验期持久化/鉴权/分页继续打qa，其他高风险、白名单、安全边界、整卡业务验收及合并权限不变。
 
 ## 候选试用、转正与回退
 
@@ -28,7 +28,7 @@ PR20已由Human合并；2026-11-05后续指令明确脚本仍为候选，从下�
 3. 固定`npm ci --no-audit --no-fund`，确认安装未改tracked文件；记录安装后的候选/安装产物基线。
 4. 运行本卡独立用例、原全量测试、原文档检查；命令记录起止、退出码和脱敏stdout/stderr。命令失败立即停止后续检查，已有日志保留。
 5. 定向和全量必须有非零测试计数证据；没有计数视为条件未满足，不把零用例当通过。
-6. 复核tracked差异为空，并比较全部git可见文件（含未忽略安装产物）的原字节指纹，避免验收修改候选。忽略文件不在该保全范围；测试不删弱的语义审查仍归独立QA，本步骤不替代它。
+6. 复核tracked差异为空，并比较全部git可见文件（含未忽略安装产物）的原字节指纹，避免验收修改候选。忽略文件不在该保全范围；不删弱断言的语义核对归阿bob，qa卡另有QA静态审查，本步骤不替代它。
 7. 再查当前head；将运行器、本卡独立用例与命令日志统一脱敏打包，固定大小分片发布到对应PR并逐片回读全文一致。失败保留本地包，不改写为成功，不自动重试发布。
 8. 脚本只返回`CHECKS_COMPLETED`或失败，不代签QA PASS、不代阿bob、不合并。浏览器与业务E2E是否执行由独立用例和原日志证明，DTO测试不能代替。
 
@@ -65,6 +65,8 @@ PR20已由Human合并；2026-11-05后续指令明确脚本仍为候选，从下�
 
 以下为QA角色发现→修复→复验链，不是DeepSeek模型成绩，也不代替Human独有发现正式计数。用户于2026-11-05 14:48后在本聊天确认：QA模型是人工改为GPT，角色名字沿用。
 
+下表“无QA”是以当时同缺陷候选的CI和阿bob记录为依据的反事实推断，不是重跑结果；后续回修新增的回归测试不能倒算为事前已有拦截层。已核对三张旧候选：PR6 `82c879f88745f8373394c2c54110a2357e138ba4`、PR9 `88982275fb45187e52a06fc16901974467362c63`、PR15 `ac46507f05f3ac59d341cdd7ac727c5e3103e99c`。
+
 | 项 | 产品问题 | 发现 | 修复 | 复验 |
 |---|---|---|---|---|
 | 1 | W01 Bearer大小写导致脱敏遗漏 | [PR6 F1](https://github.com/zwmhua/Solo-Flow-Workbench/pull/6#issuecomment-6623694711) | [修复](https://github.com/zwmhua/Solo-Flow-Workbench/pull/6#issuecomment-6623741893) | [新SHA QA](https://github.com/zwmhua/Solo-Flow-Workbench/pull/6#issuecomment-6623791854) |
@@ -72,6 +74,24 @@ PR20已由Human合并；2026-11-05后续指令明确脚本仍为候选，从下�
 | 3 | W02a GraphQL缺失/无效endCursor误判末页 | [PR9 F2](https://github.com/zwmhua/Solo-Flow-Workbench/pull/9#issuecomment-6629266822) | 同上 | 同上 |
 | 4 | W02a REST last>当前页却缺next误判结束 | [PR9 F3](https://github.com/zwmhua/Solo-Flow-Workbench/pull/9#issuecomment-6629266822) | 同上 | 同上 |
 | 5 | W02b REST prev/last矛盾被当作完整分页 | [PR15 F1](https://github.com/zwmhua/Solo-Flow-Workbench/pull/15#issuecomment-6630785235) | [修复与复验链](https://github.com/zwmhua/Solo-Flow-Workbench/pull/15#issuecomment-6631383972) | [阿bob复验及漏项说明](https://github.com/zwmhua/Solo-Flow-Workbench/pull/15#issuecomment-6631435078) |
+
+| 项 | 无QA时拦在哪层／会漏（每项一句） |
+|---|---|
+| 1 Bearer大小写 | 当时[CI 9项成功](https://github.com/zwmhua/Solo-Flow-Workbench/actions/runs/41781041294)且[阿bob R01 PASS](https://github.com/zwmhua/Solo-Flow-Workbench/pull/6#issuecomment-6623702715)，未覆盖小写/混合大小写，故按当时CI+阿bob门禁会漏；Human是否另行发现未知。 |
+| 2 跨仓响应冲突 | 当时[CI 21项成功](https://github.com/zwmhua/Solo-Flow-Workbench/actions/runs/41818900766)且[阿bob R01 PASS](https://github.com/zwmhua/Solo-Flow-Workbench/pull/9#issuecomment-6629244297)，未发现请求仓库与返回对象仓库冲突，故按当时两层覆盖会漏；后续其他层能否发现未知。 |
+| 3 GraphQL末页游标 | 同一[CI绿色候选](https://github.com/zwmhua/Solo-Flow-Workbench/actions/runs/41818900766)和[阿bob PASS](https://github.com/zwmhua/Solo-Flow-Workbench/pull/9#issuecomment-6629244297)未发现末页endCursor缺失/非法被判完整，故当时会漏；QA指出后补的回归不能算原CI已能拦住。 |
+| 4 REST last/next矛盾 | 同一[CI绿色候选](https://github.com/zwmhua/Solo-Flow-Workbench/actions/runs/41818900766)和[阿bob PASS](https://github.com/zwmhua/Solo-Flow-Workbench/pull/9#issuecomment-6629244297)未发现last在更后页却无next仍判终页，故当时会漏；没有其他已实证的拦截层。 |
+| 5 REST prev/last矛盾 | 当时[CI 41项成功](https://github.com/zwmhua/Solo-Flow-Workbench/actions/runs/41827955594)且[阿bob R01 PASS](https://github.com/zwmhua/Solo-Flow-Workbench/pull/15#issuecomment-6630793766)，阿bob[后续明确承认旧8组漏掉F1](https://github.com/zwmhua/Solo-Flow-Workbench/pull/15#issuecomment-6631435078)，故当时会漏；R2补测能拦住不能倒算为原有覆盖。 |
+
+## 此后五张qa卡的试验窗口
+
+历史五项说明先随本修订由Human手合；之后下一张新进入验收的qa卡才起算，当前为未起算0/5。历史PR6/9/15及同卡回修、复验不计入；按唯一任务卡计数。五张包括正常完成的静态审查，即使零发现也计；无法完成审查或缺CI/阿bob对照记录的卡保留在窗口记录中标UNKNOWN，不用换卡凑数。
+
+独有发现判据为**同一缺陷候选CI绿且阿bob已PASS仍会放行的真缺陷**；QA疑点须经实现/阿bob确认真缺陷，确认与补负例写入对应卡，QA本身不跑测试。阿卡在每卡既有PR评论登记“窗口序号／卡与SHA／CI／阿bob／QA静态审查／独有发现或UNKNOWN”，阿Pi沿既有账本汇总。缺陷按根因去重，QA提示后的补测不反推另一方事前已发现。
+
+满5张按WORKFLOW规则6结算：核实独有发现0则取消QA步骤，非零则保留；未解决UNKNOWN报Human裁定，不把缺失资料写成0。未满窗不宣称取消QA。此处取消的是QA步骤，不是高风险标签、CI+阿bob、SHA绑定或安全红线；不新增定时任务或额外验收环节。
+
+## 模型证据（历史身份不随当前改名重写）
 
 | PR | 当次角色 | 历史模型证据 | 精确运行身份结论 |
 |---|---|---|---|
