@@ -73,6 +73,7 @@ flowchart TD
 - QA FAIL 规则或需求错 / REJECTED 需求理解错 → 回大脑三问。
 - NOT_TESTED（整份 QA 无法进行）按 BLOCKED 处理。
 - BLOCKED 第 1 次 → 补条件重测；第 2 次 → Human 决定修环境还是跳过，跳过要在 PR 里写明风险。
+- 辅助脚本类 BLOCKED 按下述“验收减负”专项：同一 PR 同类最多两轮，不进入第三轮；不涉及产品代码与断言的仓外纠正只留一行，不逐次发裁定。其他 BLOCKED 保持原规则。
 - 拆卡不回到 Human 提需求，直接建多张 Issue。
 - 每次停机（X1/X2）、回修、BLOCKED，都在 Issue 或 PR 评论里留一行。没留痕的，就算没触发过。
 - X1/X2 的具体触发条件以 Codex 指令为准。
@@ -118,6 +119,14 @@ flowchart TD
    - 大脑出的回修/补证据卡里写明这一条，缺报告评论的 PR 不进验收。
 
 ## 7. 模板（只放一处，以文件为准）
+
+### 验收减负（2026-11-05 Human 指定，须本 PR 经 Human 合并后生效）
+
+- 固定仓外脚本接管锁定 SHA、安装、定向/全量/文档检查、保全、脱敏打包发布与回读；每卡只写独立用例。源码、固定位置和适用边界见[验收固定入口](docs/acceptance-automation.md)。
+- 同一 PR 同类辅助错误最多两轮；第二轮仍未解除时，按已有证据出有明确覆盖边界的结论，证据不足报 Human，不继续第三轮。不碰产品代码、断言与预期的仓外辅助修正只在 PR 留一行，权限、安全、白名单及产品回修边界不变。
+- 无状态变化时由宿主前置判定，定时任务不启动完整模型回合；新到期的有效40分钟进度点视为事件。现有宿主尚未接入，不能把“运行后不发消息”当作已实现。
+- 独立 QA 仍按项目门槛执行；角色名不等于模型。五项促成修复的问题与实际模型证据见上述文档，精确运行型号缺失写 UNKNOWN，不用当前配置反推历史。
+- 本专项仅替换重复验收编排、辅助错误续办和无变化唤醒方式；不改变双PASS、CI、WIP、SHA绑定、安全边界和Human合并权限。候选脚本不因提PR自动启用。
 
 - Issue 模板：[`templates/.github/ISSUE_TEMPLATE/task.md`](templates/.github/ISSUE_TEMPLATE/task.md)
 - PR 模板：[`templates/.github/pull_request_template.md`](templates/.github/pull_request_template.md)
