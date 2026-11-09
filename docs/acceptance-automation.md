@@ -91,6 +91,18 @@ PR20、PR22已由Human合并；脚本仍为候选，从下一张真实验收卡�
 
 满5张按WORKFLOW规则6结算：核实独有发现0则取消QA步骤，非零则保留；未解决UNKNOWN报Human裁定，不把缺失资料写成0。未满窗不宣称取消QA。此处取消的是QA步骤，不是高风险标签、CI+阿bob、SHA绑定或安全红线；不新增定时任务或额外验收环节。
 
+## 五卡窗口结算（2026-11-09，Human 2026-11-09 批准）
+
+| 序号 | 卡与PR | 独有发现 |
+|---|---|---|
+| 1 | [#60 / PR64](https://github.com/zwmhua/Solo-Flow-Workbench/pull/64) | UNKNOWN（PR关闭，QA记录不全） |
+| 2 | [#75 / PR80](https://github.com/zwmhua/Solo-Flow-Workbench/pull/80) | 有：S1/S2，同SHA CI绿、[阿bob R01 PASS](https://github.com/zwmhua/Solo-Flow-Workbench/pull/80#issuecomment-6678852642)后经[QA疑点](https://github.com/zwmhua/Solo-Flow-Workbench/pull/80#issuecomment-6678853246)复现并回修 |
+| 3 | [#77 / PR90](https://github.com/zwmhua/Solo-Flow-Workbench/pull/90) | UNKNOWN（F01最早发现方未核清） |
+| 4 | [#97 / PR98](https://github.com/zwmhua/Solo-Flow-Workbench/pull/98) | 无（QA PASS） |
+| 5 | [#102 / PR103](https://github.com/zwmhua/Solo-Flow-Workbench/pull/103) | 无（F01由QA与阿bob同时发现） |
+
+结论：独有发现非零，按WORKFLOW规则6保留QA步骤；UNKNOWN两张不改变结论。
+
 ## 模型证据（历史身份不随当前改名重写）
 
 | PR | 当次角色 | 历史模型证据 | 精确运行身份结论 |
