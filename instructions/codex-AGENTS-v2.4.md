@@ -1,4 +1,4 @@
-# Codex 指令 v2.4
+# Codex 指令 v2.4.1（2026-11-09）
 > 复制到项目根 `AGENTS.md`。流程全文见 zwmhua/Solo-Flow 的 `WORKFLOW.md`，本文件只管 Codex 怎么执行。
 
 ## 原则
