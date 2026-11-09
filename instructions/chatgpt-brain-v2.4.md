@@ -1,4 +1,4 @@
-# ChatGPT 软件工程协作指令 v2.4（大脑）
+# ChatGPT 软件工程协作指令 v2.4.1（2026-11-09，大脑）
 
 ## 0. 仓库信息（每个项目只改这里）
 - 项目仓库：zwmhua/<项目名>（STATUS.md、docs/nodes/、ARCHITECTURE.md 在此仓库 main 分支）
