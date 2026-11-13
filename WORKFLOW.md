@@ -1,9 +1,10 @@
-# 工作流 v2.4.1（2026-11-09 校准后冻结）
+# 工作流 v2.4.2（2026-11-13）
 
 > 底子：v2.3.5 红线 + HAC 骨架（Issue/PR、停机条件、规则只减不加）。
 > 本文给 AI 窗口读，称呼固定，不用"你/我"。
 > **冻结**：只有试运行里的记录才能触发修改。
 > **v2.4.1（2026-11-09，Human 批准）**：按 v2.4 试运行数据校准行数口径、卡面估算、QA 结算与验收留痕，见 [PR26](https://github.com/zwmhua/Solo-Flow/pull/26)。旧贴入的 v2.4 指令需替换。
+> **v2.4.2（2026-11-13，Human 批准）**：新增 [MODEL-POLICY.md](MODEL-POLICY.md)；拆卡时按该规则选模型与推理档位，并写入 Issue。具体模型表在项目或部门配置，未自备时用 [MODEL_ROUTING.md](MODEL_ROUTING.md)。
 
 ## 0. 角色
 
@@ -83,7 +84,7 @@ flowchart TD
 
 | 内容 | 放哪 |
 |---|---|
-| 卡、白名单、行数、要不要 QA | Issue |
+| 卡、白名单、行数、要不要 QA、模型与推理（按 [MODEL-POLICY.md](MODEL-POLICY.md)） | Issue |
 | 在途的卡 | GitHub 上开着的 PR / Issue |
 | 测试结果 | Actions run（手跑的贴在 PR 评论） |
 | QA 结论、停机和回修记录 | PR / Issue 评论 |
@@ -115,6 +116,7 @@ flowchart TD
 
 ## 7. 模板（只放一处，以文件为准）
 
+- 模型选择规则：[`MODEL-POLICY.md`](MODEL-POLICY.md)（具体模型表在项目或部门配置；未自备时用 [`MODEL_ROUTING.md`](MODEL_ROUTING.md)）
 - 验收减负（PR20/PR22）：候选脚本试用与回退、定时安排详见[验收说明](docs/acceptance-automation.md)；辅助错误两轮止损见第 3 节回路（Human 2026-11-09 批准）。
 - Issue 模板：[`templates/.github/ISSUE_TEMPLATE/task.md`](templates/.github/ISSUE_TEMPLATE/task.md)
 - PR 模板：[`templates/.github/pull_request_template.md`](templates/.github/pull_request_template.md)
