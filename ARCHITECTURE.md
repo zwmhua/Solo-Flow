@@ -8,7 +8,7 @@ Solo-Flow 是个人开发工作流、角色指令、模板和 Workbench 数据�
 
 - [README.md](README.md)：仓库用途和供项目复制的文件入口。
 - [WORKFLOW.md](WORKFLOW.md)：角色、执行主线、停机条件、证据和试运行规则。
-- [MODEL_ROUTING.md](MODEL_ROUTING.md)：执行模型路由；[QA-HANDOFF.md](QA-HANDOFF.md) 是独立 QA 的交接模板。
+- [MODEL-POLICY.md](MODEL-POLICY.md)：模型选择规则；[MODEL_ROUTING.md](MODEL_ROUTING.md) 是未自备模型表时的默认表；[QA-HANDOFF.md](QA-HANDOFF.md) 是独立 QA 的交接模板。
 - [instructions/](instructions/)：大脑自定义指令与供项目复制为根 AGENTS.md 的 Codex 指令。
 - [templates/.github/](templates/.github/)：下游项目可复制的 Issue 和 PR 模板。
 - [project-skeleton/](project-skeleton/)：下游项目可复制的 STATUS 和节点档案模板。
