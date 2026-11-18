@@ -1,12 +1,13 @@
-# QA 指令模板 v2.4.5
+# QA 指令模板 v2.4.6
 > 由大脑填写，只用于 `qa` 标签卡。推荐配置 `gpt-6.2-sol / High`；当次实际运行型号及可观察来源单独记录，无证据写 `UNKNOWN`。QA 只读 diff 静态审查，不跑测试、不写或运行独立用例、不改代码、不提交；独立审查不等于模型异源。
 
 ## 固定对象
 - 仓库：
 - 原卡 / 需求与验收标准：
-- PR：#
+- 审核对象：PR 编号或卡面指定的本地候选位置
+- base（完整 SHA）：
 - 被审 commit（完整 SHA）：
-- Diff 范围：`main...<SHA>`
+- Diff 范围：`<base SHA>...<候选 SHA>`
 
 ## 重点探查（2–3 条）
 只根据diff、必要上下文与契约指出疑点，不安装依赖、不调用仓外运行器。需要负例时由大脑在实现或阿bob的卡中写明责任人与验收点，由其补测；QA不得编写或运行独立用例。阿bob候选试用与手动回退仍按[验收说明](docs/acceptance-automation.md)执行。
@@ -17,8 +18,8 @@
 ## 规则
 - 只读diff及理解变更必要的代码上下文/契约；不跑测试、不编写或运行独立用例，不改文件、不推送。
 - 评级只针对静态审查。运行验证归CI及阿bob，不属于QA职责，不因QA未运行而评 NOT_TESTED。
-  BLOCKED / NOT_TESTED 只用于：拿不到 PR、SHA、Diff，或读不了代码。
-- 结论只对上面这个 SHA 有效；SHA 变了结论作废（只改 STATUS / docs/nodes 的除外）。
+  BLOCKED / NOT_TESTED 只用于：拿不到审核对象、SHA、diff，或读不了代码。本地证据按 WORKFLOW §6 记录。
+- 结论绑定所审 SHA，换 SHA 的证据复核与例外见 WORKFLOW §6。
 - 项目专属风险见该项目的 `ARCHITECTURE.md`。
 
 ## 输出格式
