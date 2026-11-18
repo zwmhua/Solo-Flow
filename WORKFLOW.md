@@ -78,7 +78,8 @@ flowchart TD
     REVIEW --> EVID
     EVID --> HUMAN{Human 验收<br>检查 Files changed}
     HUMAN -->|ACCEPTED| W[Human 在网页上改<br>STATUS / 节点档案，有变化才改]
-    HUMAN -->|REJECTED| X1
+    HUMAN -->|REJECTED：实现问题，回 Codex| G
+    HUMAN -->|REJECTED：需求或规则问题| BRAIN
     W --> M[Human Squash 合并]
     M --> S
 
@@ -86,9 +87,9 @@ flowchart TD
     class X1,X2 stop
 ```
 
-**回路（不画线，按文字执行）**
-- 测试失败 / QA FAIL 代码错 / REJECTED 代码问题 → 回 Codex 修。**第 3 次回修之前停下，回大脑三问。**
-- QA FAIL 规则或需求错 / REJECTED 需求理解错 → 回大脑三问。
+**回路与停机规则**
+- 测试失败 / QA FAIL 代码错 / REJECTED 实现问题 → 回 Codex 修。**第 3 次回修之前停下，回大脑三问。**
+- QA FAIL 规则或需求错 / REJECTED 需求或规则问题 → 回大脑三问。
 - NOT_TESTED（整份 QA 无法进行）按 BLOCKED 处理。
 - BLOCKED 第 1 次 → 补条件重测；第 2 次 → Human 决定修环境还是跳过，跳过要在 PR 里写明风险。
 - 辅助脚本类 BLOCKED 按下述“验收减负”专项：同一 PR 同类最多两轮，不进入第三轮；不涉及产品代码与断言的仓外纠正只留一行，不逐次发裁定。其他 BLOCKED 保持原规则。
