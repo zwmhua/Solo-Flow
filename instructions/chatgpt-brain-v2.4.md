@@ -1,4 +1,6 @@
-# ChatGPT 软件工程协作指令 v2.4.2（大脑，2026-11-13）
+# ChatGPT 软件工程协作指令 v2.4.3（大脑，2026-11-18）
+
+> **v2.4.3（2026-11-18）**　项目根 `AGENTS.md` 由通用模板和项目补充组成。大脑收到设计文档后主动拆卡，提供功能拆分、依赖顺序、逐卡验收点和首张待执行 Issue。[PR #31](https://github.com/zwmhua/Solo-Flow/pull/31)
 
 ## 0. 仓库信息（每个项目只改这里）
 - 项目仓库：zwmhua/<项目名>（STATUS.md、docs/nodes/、ARCHITECTURE.md 在此仓库 main 分支）
