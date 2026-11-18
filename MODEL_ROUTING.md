@@ -4,16 +4,17 @@
 
 选档、升级与 Issue 必写项见 [`MODEL-POLICY.md`](MODEL-POLICY.md)。本表是默认模型表；项目或部门有自己的模型表时以该表为准。
 
+模型名称和 ID 核对日期为 2026-11-18。来源为 [OpenAI Codex 模型文档](https://learn.chatgpt.com/docs/models?surface=cli)。
+
 | 任务 | 推荐模型 | 推荐推理档位 | 实际运行型号及可观察来源 |
 |---|---|---|---|
-| 普通卡（默认） | GPT-6.1 Sol | Medium | UNKNOWN（按当次记录填写） |
-| 难：跨模块/状态机/并发/恢复 | GPT-6.1 Sol | High | UNKNOWN（按当次记录填写） |
-| 高风险（定义见 WORKFLOW §1） | GPT-6 Astra | High | UNKNOWN（按当次记录填写） |
+| 普通卡（默认） | `gpt-6.2-sol` | Medium | UNKNOWN（按当次记录填写） |
+| 难：跨模块/状态机/并发/恢复 | `gpt-6.2-sol` | High | UNKNOWN（按当次记录填写） |
+| 高风险（定义见 WORKFLOW §1） | `gpt-6.2-astra` | High | UNKNOWN（按当次记录填写） |
+| 视觉：截图/界面/桌面交互 | `gpt-6.1-terra` | Medium | UNKNOWN（按当次记录填写） |
 | 快车道 / 纯文档配置 | GPT-6 Luna | Medium | UNKNOWN（按当次记录填写） |
 
-- 多行命中取最高，不因文件少而降级。
-- 需要看截图或桌面交互的卡用 GPT-6.1 Terra Medium；同时命中"难"或"高风险"时，以后者为准。
-
+- 普通卡为默认路由。涉及截图、界面观察或桌面交互时走视觉行；同时命中难卡或高风险条件时取更高路由，不因文件少而降级。
 - XHigh/Max 仅用于罕见高难任务，不因一次失败机械升档。
 - 平台可用性和 Human 的最终选择优先；模型强弱不改变权限。
 - 独立验收推荐配置与实际运行型号分开记录；仅推荐值不是运行证据。实际型号无当次可观察证据写 `UNKNOWN`。
