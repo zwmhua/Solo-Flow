@@ -1,6 +1,6 @@
 # 人工看台数据约定 v0：L1 标签与原生事实
 
-> Solo-Flow 文档版本：**v3.0**
+> Solo-Flow 文档版本：**v3.1**
 
 本文件固化 Human 已确认的 L1 接入约定，不修改 Solo-Flow 的 WORKFLOW、执行顺序或合并授权。
 依据：[立项 R02](https://github.com/zwmhua/HoSaiLei/pull/36#issuecomment-6612841655)、[Human 确认与实施范围](https://github.com/zwmhua/HoSaiLei/pull/36#issuecomment-6622200364)。
