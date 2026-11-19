@@ -1,6 +1,6 @@
 # 执行模型路由（Codex 用；按试运行效果调整）
 
-> Solo-Flow 文档版本：**v3.0**
+> Solo-Flow 文档版本：**v3.1**
 
 选档、升级与 Issue 必写项见 [`MODEL-POLICY.md`](MODEL-POLICY.md)。本表是默认模型表；项目或部门有自己的模型表时以该表为准。
 
