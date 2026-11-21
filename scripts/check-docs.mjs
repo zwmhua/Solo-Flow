@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = fs.realpathSync(process.cwd());
-const required = ['README.md', 'WORKFLOW.md', 'MODEL_ROUTING.md', 'QA-HANDOFF.md', 'docs/workbench/data-contract-v0.md'];
+const required = ['README.md', 'WORKFLOW.md', 'MODEL_ROUTING.md', 'docs/workbench/data-contract-v0.md'];
 let errors = 0;
 let targets = 0;
 const documents = new Set(required);

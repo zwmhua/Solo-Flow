@@ -7,7 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const script = fileURLToPath(new URL('../scripts/check-docs.mjs', import.meta.url));
-const required = ['README.md', 'WORKFLOW.md', 'MODEL_ROUTING.md', 'QA-HANDOFF.md', 'docs/workbench/data-contract-v0.md'];
+const required = ['README.md', 'WORKFLOW.md', 'MODEL_ROUTING.md', 'docs/workbench/data-contract-v0.md'];
 
 function fixture(t) {
   const root = mkdtempSync(path.join(tmpdir(), 'solo-docs-'));

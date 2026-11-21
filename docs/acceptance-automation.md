@@ -1,4 +1,6 @@
-# 验收固定入口与两轮止损（候选）
+# 验收固定入口与两轮止损（历史）
+
+> 以下内容记录 v3.1 及更早阶段的候选试验、定时调整及验收证据。现行流程见 [WORKFLOW](../WORKFLOW.md)。文中的试用安排、路径和命令均属历史记录。
 
 > Solo-Flow 文档版本：**v3.1**
 
@@ -14,7 +16,7 @@ PR20、PR22已由Human合并；脚本仍为候选，从下一张真实验收卡�
 
 ## 固定入口
 
-- 审查源：[运行器](../scripts/acceptance-runner.mjs)、[隔离自测](../test/acceptance-runner.test.mjs)。
+- 审查源：[运行器](https://github.com/zwmhua/Solo-Flow/blob/fe1be056588856e8c8bfb9511f593a90ce53413c/scripts/acceptance-runner.mjs)、[隔离自测](https://github.com/zwmhua/Solo-Flow/blob/fe1be056588856e8c8bfb9511f593a90ce53413c/test/acceptance-runner.test.mjs)。
 - 仓外固定候选目录：`E:\Documents\OpenMausBot\data\workspaces\535025b7-9736-41e0-8de8-5766c142884a\tools\acceptance\v1-candidate`。
 - 运行参数只有PR号和40位小写SHA：`node <固定目录>/acceptance-runner.mjs 53 <完整SHA>`。
 - 本版固定目标为`zwmhua/Solo-Flow-Workbench`；不凭PR编号猜仓库，不支持跨仓fork。其他仓库须另行固定适配，不能声称通用。
