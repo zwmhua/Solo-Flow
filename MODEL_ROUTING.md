@@ -6,6 +6,7 @@
 
 | 任务 | 推荐模型 | 推理档位 |
 |---|---|---|
+| 高风险任务（定义见 WORKFLOW 第 1 节） | `gpt-6.2-astra` | High |
 | 范围明确的纯文档或小改 | `gpt-6-luna` | Medium |
 | 普通编码及验证 | `gpt-6.2-sol` | Medium |
 | 跨模块行为、状态或依赖核对 | `gpt-6.2-sol` | High |
