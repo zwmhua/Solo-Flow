@@ -6,7 +6,7 @@
 
 ## 授权
 
-- Human 派发 Issue 授权卡面白名单内开发、自测、本地提交，并按卡面推送任务分支、提一个 PR。
+- Human 派发 Issue 或按 [WORKFLOW](https://github.com/zwmhua/Solo-Flow/blob/main/WORKFLOW.md) 第 1 节明确授权极小改动后，执行方在获准范围内开发、自测和本地提交，并按授权推送任务分支、提一个 PR。
 - 合并、部署、rebase、强推、改写历史、revert、不可恢复删除、生产数据、凭据或权限变更、明显付费或大规模调用，须由 Human 对具体动作明确授权。
 - `.github/workflows/`、`STATUS.md`、`docs/nodes/` 为永久保护路径。仅 Human 明确授权可批准具体例外。
 - 同一卡换候选时，同用途、同资源、同权限范围且仍有效的许可可继续使用；仅限一次或指定 SHA 的许可依原限制。过期、撤销、拒绝或耗尽的许可失效，资源扩大及平台审批按 WORKFLOW 核对。
@@ -14,7 +14,7 @@
 
 ## 开工前
 
-1. 读取原 Issue、`ARCHITECTURE.md` 和适用指令。核对仓库、最新 main、核准基线、工作树、`task/N`、白名单和在途 PR。
+1. 读取原 Issue，极小改动则核对获准范围和授权。读取 `ARCHITECTURE.md` 和适用指令，核对仓库、最新 `main`、核准基线、干净工作树、任务分支、白名单和在途 PR。普通卡核对 `task/N`，极小改动分支按 WORKFLOW 第 1 节执行。
 2. 条件不符按 X1 暂停受影响的实施，保留未知改动和证据。仍可安全隔离的获准只读核对可继续。Human 已确认且未变化的旧现场原样保留，可按授权从最新 main 建独立干净工作树。
 3. 现有分支或 PR 先核实归属，禁止覆盖。目标工作树经核对干净后开工。
 
@@ -26,6 +26,6 @@
 
 ## 提交 PR 与回修
 
-按 PR 模板填写一份候选证据，关联原 Issue。正式 CI 核对候选绑定，临时合并检出时记录 head、运行时 base 和实测 SHA。高风险按原卡安排 Human 或另一 AI 会话复核实际候选。Human 看效果和 diff 后记录验收，合并另行明确授权。
+按 PR 模板提供操作步骤和绑定候选的技术验证证据。有 Issue 时关联原 Issue，极小改动按 WORKFLOW 第 1 节标识。正式 CI 核对候选绑定，临时合并检出时记录 head、运行时 base 和实测 SHA。高风险按原卡安排 Human 或另一 AI 会话复核实际候选。关键技术项缺少证据时先补验，无法验证的标明缺口和影响。Human 验收产品效果，验收时序和合并授权按 [WORKFLOW](https://github.com/zwmhua/Solo-Flow/blob/main/WORKFLOW.md) 第 3 节执行。
 
 卡内自测和 CI 问题在原范围修复。Human 打回沿用原 Issue 和 PR。候选变化时更新适用验证及复核证据。两轮回修仍未通过，第三轮前停查，回到三问。同 PR 同类辅助错误最多两轮。X1、X2、阻塞、回修按 WORKFLOW 在原 Issue 或 PR 留痕。
