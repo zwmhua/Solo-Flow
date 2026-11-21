@@ -15,7 +15,7 @@ Solo-Flow 是个人开发工作流、角色指令、模板和 Workbench 数据�
 - [templates/.github/](templates/.github/)：下游项目可复制的 Issue 和 PR 模板。
 - [project-skeleton/](project-skeleton/)：下游项目可复制的 STATUS 和节点档案模板。
 - [docs/workbench/data-contract-v0.md](docs/workbench/data-contract-v0.md)：Workbench 的标签、原生事实及读取边界约定。
-- [STATUS.md](STATUS.md)：本仓当前阶段、下一步和风险记录。
+- [STATUS.md](STATUS.md)：HoSaiLei 历史交接记录，仅供回查，不能据此判断本仓当前阶段。
 
 `templates/` 和 `project-skeleton/` 是供下游复制的模板，不是正在运行的产品。
 本仓没有 `package.json` 或依赖安装入口；检查器使用 Node.js 内置模块。
