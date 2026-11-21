@@ -1,5 +1,7 @@
 # STATUS
 
+本次 Solo-Flow 流程调整见 PR #49 和 Issue #48。现行规则以 `main` 分支的 `WORKFLOW.md` 为准。下文为 HoSaiLei 的历史交接记录。
+
 > Solo-Flow 文档版本：**v3.1**
 
 阶段：HoSaiLei M0 拒绝专项收口；云端啊bob相关职责转由本地接管。
@@ -22,11 +24,6 @@
 - 交接后核实：第0步文档对齐 [HoSaiLei #34](https://github.com/zwmhua/HoSaiLei/pull/34) 已合并，merge SHA 为 048c4b2959102bc5a706258eb047b0fdc9c65938；不再记为“阿C正在做”。仅两份文档：STATUS.md、docs/nodes/M0-approval-e2e.md。
 - #34 合并后 CI 本轮未重新核验；不把 #33 的 CI 或旧 Candidate 桌面证据改签为 #34 实测。
 - M0 按 Human 已接受书面风险收口；原 QA、桌面报告、风险及未测边界仍保留，不能推导为完整生产应用或稳定版整体验收通过。
-
-## 群内协作
-- 超过 5 行的内容（含 QA 卡、任务卡和给其他 bot 的派活卡）先发对应 PR 评论；群里仅 @负责人 + 1 行任务简述 + 该评论链接。
-- 每张卡只有负责人回群，其他 bot 仅被 @ 时发言；状态未变化不重复回群。
-- 同一事项来回超过 2 轮，立即停止并 @华周；需要华周操作时单独 @，写清操作内容和预计耗时。
 
 ## 本次记录来源与范围
 - 来源：[Solo-Flow #11](https://github.com/zwmhua/Solo-Flow/issues/11)；Human 2026-11-03 22:46 明确授权本任务豁免 ARCHITECTURE.md 前置并新建根 STATUS.md，仅本次有效。
