@@ -1,7 +1,5 @@
 # Solo-Flow 当前结构
 
-> Solo-Flow 文档版本：**v3.1**
-
 本文描述当前仓库内容与文档检查的实现边界，不定义新流程或产品设计。
 Solo-Flow 是个人开发工作流、角色指令、模板和 Workbench 数据契约的规范仓库。
 这里没有 Workbench 服务或 UI 实现；契约落地不等于产品已接通。
@@ -9,8 +7,8 @@ Solo-Flow 是个人开发工作流、角色指令、模板和 Workbench 数据�
 ## 仓库入口
 
 - [README.md](README.md)：仓库用途和供项目复制的文件入口。
-- [WORKFLOW.md](WORKFLOW.md)：角色、执行主线、停机条件、证据和试运行规则。
-- [MODEL-POLICY.md](MODEL-POLICY.md)：模型选择规则；[MODEL_ROUTING.md](MODEL_ROUTING.md) 是未自备模型表时的默认表；[QA-HANDOFF.md](QA-HANDOFF.md) 是独立 QA 的交接模板。
+- [WORKFLOW.md](WORKFLOW.md)：PR 主线、停机条件、验收证据和收尾。
+- [MODEL_ROUTING.md](MODEL_ROUTING.md)：按任务给出可选的执行模型与推理档位。
 - [instructions/](instructions/)：大脑自定义指令与供项目复制为根 AGENTS.md 的 Codex 指令。
 - [templates/.github/](templates/.github/)：下游项目可复制的 Issue 和 PR 模板。
 - [project-skeleton/](project-skeleton/)：下游项目可复制的 STATUS 和节点档案模板。
@@ -23,7 +21,7 @@ Solo-Flow 是个人开发工作流、角色指令、模板和 Workbench 数据�
 ## 文档检查
 
 [scripts/check-docs.mjs](scripts/check-docs.mjs) 从运行时的当前目录作为仓库根目录，
-读取四个必需根文档 README、WORKFLOW、MODEL_ROUTING、QA-HANDOFF，以及必需的 Workbench 契约；
+读取三个必需根文档 README、WORKFLOW、MODEL_ROUTING，以及必需的 Workbench 契约；
 同时递归收集 `docs/` 下的 Markdown 文件。必需文档缺失、不可读、不是文件或为空会报错。
 根目录的 ARCHITECTURE.md 不在当前必需列表，也不在 `docs/` 下，因此目前不被该检查器扫描。
 
