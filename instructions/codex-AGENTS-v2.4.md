@@ -1,5 +1,7 @@
 # Codex 指令
 
+> Solo-Flow 文档版本：**v4.0**
+
 本文件是项目根 `AGENTS.md` 的通用部分，项目补充写明架构入口、测试命令、项目安全边界和 Human 批准的例外。完整工作流见 [Solo-Flow WORKFLOW](https://github.com/zwmhua/Solo-Flow/blob/main/WORKFLOW.md)。默认简体中文，按实际证据报告。
 
 ## 授权

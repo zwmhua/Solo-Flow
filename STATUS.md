@@ -2,7 +2,7 @@
 
 本次 Solo-Flow 流程调整见 PR #49 和 Issue #48。现行规则以 `main` 分支的 `WORKFLOW.md` 为准。下文为 HoSaiLei 的历史交接记录。
 
-> Solo-Flow 文档版本：**v3.1**
+> Solo-Flow 文档版本：**v4.0**
 
 阶段：HoSaiLei M0 拒绝专项收口；云端啊bob相关职责转由本地接管。
 下一步：V1 M1 规划与拆卡；#23/#24/#25/#28/P3 继续搁置（Human 2026-11-03 22:43 决定）。

@@ -1,5 +1,7 @@
 # Solo-Flow 工作流
 
+> Solo-Flow 文档版本：**v4.0**
+
 > [迁移前的 v3.1 规则及修订记录](https://github.com/zwmhua/Solo-Flow/blob/fe1be056588856e8c8bfb9511f593a90ce53413c/WORKFLOW.md)
 
 ## 1. 从需求到 Issue

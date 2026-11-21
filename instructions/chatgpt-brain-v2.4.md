@@ -1,5 +1,7 @@
 # ChatGPT 软件工程协作指令（大脑）
 
+> Solo-Flow 文档版本：**v4.0**
+
 ## 0. 仓库信息（每个项目只改这里）
 
 - 项目仓库为 `zwmhua/<项目名>`，项目主线维护 `ARCHITECTURE.md`、`STATUS.md` 和适用的 `docs/nodes/`。
