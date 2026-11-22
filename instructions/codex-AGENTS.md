@@ -6,7 +6,7 @@
 
 ## 授权
 
-- Human 派发 Issue 或按 [WORKFLOW](https://github.com/zwmhua/Solo-Flow/blob/main/WORKFLOW.md) 第 1 节明确授权极小改动后，执行方在获准范围内开发、自测和本地提交，并按授权推送任务分支、提一个 PR。
+- Human 明确授权执行 Issue 或按 [WORKFLOW](https://github.com/zwmhua/Solo-Flow/blob/main/WORKFLOW.md) 第 1 节明确授权极小改动后，执行方在获准范围内开发、自测和本地提交，并按授权推送任务分支、提一个 PR。
 - 合并、部署、rebase、强推、改写历史、revert、不可恢复删除、生产数据、凭据或权限变更、明显付费或大规模调用，须由 Human 对具体动作明确授权。
 - `.github/workflows/`、`STATUS.md`、`docs/nodes/` 为永久保护路径。仅 Human 明确授权可批准具体例外。
 - 同一卡换候选时，同用途、同资源、同权限范围且仍有效的许可可继续使用；仅限一次或指定 SHA 的许可依原限制。过期、撤销、拒绝或耗尽的许可失效，资源扩大及平台审批按 WORKFLOW 核对。
@@ -26,6 +26,8 @@
 
 ## 提交 PR 与回修
 
-按 PR 模板提供操作步骤和绑定候选的技术验证证据。有 Issue 时关联原 Issue，极小改动按 WORKFLOW 第 1 节标识。正式 CI 核对候选绑定，临时合并检出时记录 head、运行时 base 和实测 SHA。高风险按原卡安排 Human 或另一 AI 会话复核实际候选。关键技术项缺少证据时先补验，无法验证的标明缺口和影响。Human 验收产品效果，验收时序和合并授权按 [WORKFLOW](https://github.com/zwmhua/Solo-Flow/blob/main/WORKFLOW.md) 第 3 节执行。
+按模板提 PR。有 Issue 时关联原 Issue，极小改动按 WORKFLOW 第 1 节标识。PR 一次记录已完成的效果、完整候选 SHA、实际验证和复核结果及证据入口、未验证项及影响、当前候选的验收入口、最短步骤和每步预期。核对正式 CI 的候选归属，临时合并检出时记录 head、运行时 base 和实测 SHA。高风险按原卡安排 Human 或另一 AI 会话独立复核实际候选。
 
-卡内自测和 CI 问题在原范围修复。Human 打回沿用原 Issue 和 PR。候选变化时更新适用验证及复核证据。两轮回修仍未通过，第三轮前停查，回到三问。同 PR 同类辅助错误最多两轮。X1、X2、阻塞、回修按 WORKFLOW 在原 Issue 或 PR 留痕。
+核实验收入口可用且归属当前候选。预览准备限已获授权的范围，部署、重启或扩大权限按授权办理。文档、接口和后台任务提供相应候选入口或可执行方法。当前候选通过适用自检、运行验证、必要回归、正式 CI 和原卡要求的独立复核，且入口核实后，直接交 Human 验收。关键技术项缺少可信证据时先补验。条件缺失时说明阻塞或未验证项及影响，缺授权时一次说明所需动作和影响。Human 承担复核时可先提交候选证据并标为待复核。最终验收和合并授权按 [WORKFLOW](https://github.com/zwmhua/Solo-Flow/blob/main/WORKFLOW.md) 第 3 节执行。
+
+卡内自测和 CI 问题在原范围修复。直接承接 Human 的同卡反馈，复现、修复、更新适用验证及复核证据，并直接重新交验，沿用原 Issue 和 PR。涉及需求歧义、范围、验收标准、规则或权限变化时，暂停受影响工作并转大脑，按 X1/X2 和 Human 的决定办理。两轮回修仍未通过（含连续两轮验收回修），第三轮前停查、报告 Human 并交大脑回三问。同 PR 同类辅助错误最多两轮。X1、X2、阻塞、回修按 WORKFLOW 在原 Issue 或 PR 留痕。
